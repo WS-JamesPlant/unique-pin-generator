@@ -1,40 +1,42 @@
 # Unique PIN Generator
 
-This library provides methods for generating unique *n* digit PIN numbers.
+This library provides methods for generating unique _n_ digit PIN numbers.
 
 ## Functions
 
-There are two globally accessible functions.
+There is one primary globally accessible function that can be imported into any other application from the file `generator.js`.
 
-### generateUniquePin(*existingPins*, *pinLength*)
+### generateUniquePin(_existingPins_, _pinLength = 6_)
 
-*existingPins* - An array of PINs as strings, these represent PINs we do not want to clash with.
+_existingPins_ - An array of PINs as strings, these represent PINs we do not want to clash with.
 
-*pinLength* - An integer representing the length of PIN we want to generate.
+_pinLength [optional]_ - An integer representing the length of PIN we want to generate. Defaults to 6 if no value is specified.
 
-*RETURNS* - A string that contains a unique PIN.
+_RETURNS_ - A string that contains a unique PIN.
 
-### generatePins(*count*)
+There is a seperate file in this repo called `test.js` that contains a simple test function that is used to generate multiple PINs and has a local array of existing PINs that can be populated.
 
-*count* - The number of unique PINs to generate.
+### generatePins(_count_)
 
-*RETURNS* - An array containing all unique PINs.
+_count_ - The number of unique PINs to generate.
 
-For the sake of testing I output the generated PINs as they are generated so that they can be copied into the *existingPins* global variable.
+_RETURNS_ - An array containing all unique PINs.
+
+For the sake of testing I output the generated PINs as they are generated so that they can be copied into the _existingPins_ global variable.
 
 ## Uniqueness
 
 We decide uniqueness of PIN based on a few factors.
 
-* We reject any PIN that contains a sequential sequence of three or more numbers either ascending or descending. *e.g. "123", "654", "987", "012".*
+- We reject any PIN that contains a sequential sequence of three or more numbers either ascending or descending. _e.g. "123", "654", "987", "012"._
 
-* We reject any PIN that contains any numbers that are repeated directly next to each other more than twice. *e.g. "111333", "195551", "624888".*
+- We reject any PIN that contains any numbers that are repeated directly next to each other more than twice. _e.g. "111333", "195551", "624888"._
 
-* We reject any PIN that contains the same number across the entire PIN four or more times. *e.g. "191117", "558255", "686676".*
+- We reject any PIN that contains the same number across the entire PIN four or more times. _e.g. "191117", "558255", "686676"._
 
-* We reject any PIN that contains a matching 3 digit length sequence of characters from any existing PIN. *e.g. existingPins=["182982"] "674298" is rejected as it contains "298" in both PINS.*
+- We reject any PIN that contains a matching 3 digit length sequence of characters from any existing PIN. _e.g. existingPins=["182982"] "674298" is rejected as it contains "298" in both PINS._
 
-* We reject any PIN that contains a matching number of identical values from an existing PIN regardless of the order. *e.g. existingPins=["185644"] "486541" is rejected as it contains the same number each digit in the PIN. 1x"1", 2x"4", 1x"5", 1x"6" and 1x"8".
+- We reject any PIN that contains a matching number of identical values from an existing PIN regardless of the order. \*e.g. existingPins=["185644"] "486541" is rejected as it contains the same number each digit in the PIN. 1x"1", 2x"4", 1x"5", 1x"6" and 1x"8".
 
 ## Performance
 
