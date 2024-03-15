@@ -14,7 +14,7 @@ _pinLength [optional]_ - An integer representing the length of PIN we want to ge
 
 _RETURNS_ - A string that contains a unique PIN.
 
-There is a seperate file in this repo called `test.js` that contains a simple test function that is used to generate multiple PINs and has a local array of existing PINs that can be populated.
+There is a separate file in this repo called `test.js` that contains a simple test function that is used to generate multiple PINs and has a local array of existing PINs that can be populated.
 
 ### generatePins(_count_)
 
