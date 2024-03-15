@@ -1,0 +1,12 @@
+{
+  "name": "unique-pin-generator",
+  "version": "1.0.0",
+  "description": "This library provides methods for generating unique *n* digit PIN numbers.",
+  "main": "generator.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
