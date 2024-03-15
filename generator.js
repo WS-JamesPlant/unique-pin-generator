@@ -3,7 +3,6 @@ function generateUniquePin(existingPins, pinLength = 6) {
   function generate() {
     const max = parseInt(new String().padStart(pinLength, "9"));
     const newPin = Math.round(Math.random() * max)
-      // const newPin = getRandomIntInclusive(0, max)
       .toString()
       .padStart(pinLength, "0");
     return newPin;
