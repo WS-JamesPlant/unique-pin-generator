@@ -1,7 +1,4 @@
-let existingPins = [
-];
-
-function generateUniquePin(existingPins, pinLength) {
+function generateUniquePin(existingPins, pinLength = 6) {
   // Generate a new random pin of specified length.
   function generate() {
     const max = parseInt(new String().padStart(pinLength, "9"));
@@ -79,7 +76,8 @@ function generateUniquePin(existingPins, pinLength) {
 
   // Attempt to generate a pin that does not match any of our testing conditions,
   // limit the number of attempts to avoid any kind of infinite loop.
-  for (let attempts = 0; attempts < 1000000; attempts++) {
+  const maxAttempts = 1000000;
+  for (let attempts = 0; attempts < maxAttempts; attempts++) {
     let newPin = generate();
     if (
       !containsSequence(newPin) &&
@@ -92,23 +90,7 @@ function generateUniquePin(existingPins, pinLength) {
     }
   }
 
-  throw new Error(
-    `Failed to generate a unique pin in ${attempts + 1} attempts`
-  );
+  throw new Error(`Failed to generate a unique pin in ${maxAttempts} attempts`);
 }
 
-function generatePins(count) {
-  try {
-    for (let i = 0; i < count; i++) {
-      let newPin = generateUniquePin(existingPins, 6);
-      existingPins.push(newPin);
-      console.log(`"${newPin}",`);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-  return existingPins;
-}
-
-generatePins(250);
-console.log(`${existingPins.length} pins generated`);
+export default generateUniquePin;
